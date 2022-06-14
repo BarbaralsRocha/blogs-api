@@ -5,11 +5,12 @@ const blogPostsSchema = (sequelize, DataTypes) => {
     published: DataTypes.DATE,
     updated: DataTypes.DATE
   });
+  
+  blogPostsTable.associate = (models) => {
+    blogPostsTable.belongsTo(models.User, { foreignKey: "userId", as: "user" });
+  }
+  
   return blogPostsTable;
-}
-
-blogPostsTable.associate = (models) => {
-  blogPostsTable.belongsTo(models.User, { foreignKey: "userId", as: "user" });
 }
 
 module.exports = blogPostsSchema;
