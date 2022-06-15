@@ -7,6 +7,14 @@ const routes = express.Router();
 routes.post('/',
 middlewares.authentication,
 middlewares.userValidation,
-userController);
+userController.newUser);
+
+routes.get('/',
+middlewares.authentication,
+userController.getUsers);
+
+routes.get('/:id',
+middlewares.authentication,
+userController.getUsersById);
 
 module.exports = routes;
