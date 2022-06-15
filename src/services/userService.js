@@ -12,6 +12,12 @@ const createUser = async ({
     image,
     });
 
+const getUsers = () => User.findAll();
+
+const getUsersById = (id) => User.findByPk(id);
+
 module.exports = {
     createUser,
+    getUsers,
+    getUsersById,
 }; 
