@@ -6,7 +6,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'BlogPosts',
-          id: 'id'
+          key: 'id'
         },
         onDelete: 'CASCADE',
         primaryKey: true,
@@ -16,7 +16,7 @@ module.exports = {
         allowNull: false,
         references: {
           model: 'Categories',
-          id: 'id'
+          key: 'id'
         },
         onDelete: 'CASCADE',
         primaryKey: true,
