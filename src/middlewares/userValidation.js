@@ -10,7 +10,7 @@ const productsDTO = Joi.object({
         'any.required': '400|{{#label}} is required',
         'string.min': '400|{{#label}} length must be at least 6 characters long',
     }),
-    image: Joi.string().min(8).required(),
+    image: Joi.string().required(),
 }).required().messages({
     'any.required': '400|{{#label}} is required',
     'string.base': '400| must be a string',
