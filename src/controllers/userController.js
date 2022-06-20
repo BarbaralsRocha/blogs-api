@@ -1,10 +1,11 @@
 const userService = require('../services/userService');
+const loginService = require('../services/loginService');
 
 const newUser = async (req, res) => {
-    const token = req.headers.authorization;
     try {
         await userService.createUser(req.body);
-        return res.status(200).json({ token });
+        const token = await loginService.authentication(req.body);
+        return res.status(201).json(token);
     } catch (e) {
         return res.status(409).json({ message: 'User already registered' });
     }
