@@ -5,7 +5,7 @@ const middlewares = require('../middlewares');
 const routes = express.Router();
 
 routes.post('/',
-middlewares.authentication,
+
 middlewares.userValidation,
 userController.newUser);
 
