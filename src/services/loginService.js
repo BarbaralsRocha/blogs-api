@@ -6,7 +6,9 @@ const { generateJWTToken } = require('../helpers/JWTToken');
 
 const authentication = async ({ email, password }) => {
     if (!email || !password) {
-        throw new Error({ status: 401, message: 'Some required fields are missing' });
+        throw new Error(JSON.stringify({ status: 400, 
+            message: 'Some required fields are missing', 
+        }));
     }
 
     const getUser = await User.findOne({
@@ -14,7 +16,7 @@ const authentication = async ({ email, password }) => {
     });
 
     if (!getUser) {
-        return null;
+        throw new Error(JSON.stringify({ status: 400, message: 'Invalid fields' }));
     }
 
     const token = generateJWTToken(getUser.dataValues);
