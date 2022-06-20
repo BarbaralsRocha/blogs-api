@@ -1,16 +1,4 @@
-const { BlogPost, Category, User } = require('../database/models');
-
-// const createUser = async ({
-//     displayName, 
-//     email,
-//     password,
-//     image,
-// }) => User.create({
-//     displayName, 
-//     email,
-//     password,
-//     image,
-//     });
+const { BlogPost, Category, User, PostCategory } = require('../database/models');
 
 const getPosts = () => BlogPost.findAll({
     include: [
@@ -19,6 +7,30 @@ const getPosts = () => BlogPost.findAll({
     ],
 });
 
+const createPost = async ({
+    title, 
+    content,
+    categoryIds,
+}, userId) => {
+    const post = await BlogPost.create({
+    title, 
+    content,
+    userId,
+});
+    await categoryIds.map(((category) => PostCategory.create({
+    postId: post.null,
+    categoryId: category,
+})));
+    return BlogPost.findByPk(post.null);
+};
+
+const getPostById = async (id) => {
+    const posts = await getPosts(); 
+    return posts.find((findId) => findId.dataValues.id === +id);
+};
+
 module.exports = {
     getPosts,
+    createPost,
+    getPostById,
 }; 
