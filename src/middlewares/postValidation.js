@@ -7,6 +7,7 @@ const postDTO = Joi.object({
     categoryIds: Joi.array().min(1).required(),
 }).messages({
     'any.required': '400|Some required fields are missing',
+    'string.empty': '400|Some required fields are missing',
     'string.base': '400| must be a string',
     });
 
