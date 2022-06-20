@@ -3,7 +3,7 @@ const postCategoriesSchema = (sequelize, DataTypes) => {
     postId: DataTypes.INTEGER,
     categoryId: DataTypes.INTEGER,
   },
-      { timestamps: false, tableName: "PostCategory" }
+      { timestamps: false }
   );
 
   postCategoriesTable.associate = (models) => {
@@ -12,14 +12,14 @@ const postCategoriesSchema = (sequelize, DataTypes) => {
           through: postCategoriesTable,
           foreignKey: 'postId',
           otherKey: 'categoryId',
-          as: 'categoryId'
+          as: 'categories'
       });
 
       models.Category.belongsToMany(models.BlogPost, {
           through: postCategoriesTable,
           foreignKey: "categoryId",
           otherKey: "postId",
-          as: 'postId'
+          as: 'post'
       });
 
   }
