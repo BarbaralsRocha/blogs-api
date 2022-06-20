@@ -5,7 +5,10 @@ const userDTO = Joi.object({
         'any.required': '400|{{#label}} is required',
         'string.min': '400|{{#label}} length must be at least 8 characters long',
     }),
-    email: Joi.string().email().required(),
+    email: Joi.string().email().required().messages({
+    'email.base': '400|{{#label}} must be a valid email',
+    'string.email': '400|{{#label}} must be a valid email',
+    }),
     password: Joi.string().min(6).required().messages({
         'any.required': '400|{{#label}} is required',
         'string.min': '400|{{#label}} length must be at least 6 characters long',
@@ -15,7 +18,6 @@ const userDTO = Joi.object({
     'any.required': '400|{{#label}} is required',
     'string.base': '400| must be a string',
     'number.base': '422|{{#label}} must be a number',
-    'email.base': '422|{{#label}} must be a valid email',
 });
 
 const userValidation = (req, res, next) => {
