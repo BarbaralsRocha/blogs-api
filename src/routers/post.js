@@ -22,4 +22,8 @@ middlewares.authentication,
 middlewares.putPostValidation,
 postController.updatePost);
 
+routes.delete('/:id',
+middlewares.authentication,
+postController.deletePost);
+
 module.exports = routes;
