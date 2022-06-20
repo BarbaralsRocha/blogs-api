@@ -2,7 +2,7 @@ const { User } = require('../database/models');
 const { generateJWTToken } = require('../helpers/JWTToken');
 // const createMessage = require('../messages');
 
-const invalidField = { status: 401, message: 'Invalid fields' };
+// const invalidField = { status: 401, message: 'Invalid fields' };
 
 const authentication = async ({ email, password }) => {
     if (!email || !password) {
@@ -14,7 +14,7 @@ const authentication = async ({ email, password }) => {
     });
 
     if (!getUser) {
-        throw invalidField;
+        return null;
     }
 
     const token = generateJWTToken(getUser.dataValues);
