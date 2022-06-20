@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const productsDTO = Joi.object({
+const userDTO = Joi.object({
     displayName: Joi.string().min(8).required().messages({
         'any.required': '400|{{#label}} is required',
         'string.min': '400|{{#label}} length must be at least 8 characters long',
@@ -19,7 +19,7 @@ const productsDTO = Joi.object({
 });
 
 const userValidation = (req, res, next) => {
-    const { error } = productsDTO.validate(req.body);
+    const { error } = userDTO.validate(req.body);
     if (error) {
         const [code, message] = error.message.split('|');
         return res.status(code).json({ message });
