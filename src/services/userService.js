@@ -22,8 +22,15 @@ const getUsersById = (id) => User.findOne(
     },
 );
 
+const deleteUser = async (userId) => User.destroy(
+        {
+            where: { id: userId },
+        },
+);
+
 module.exports = {
     createUser,
     getUsers,
     getUsersById,
+    deleteUser,
 }; 

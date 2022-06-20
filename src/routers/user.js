@@ -17,4 +17,8 @@ routes.get('/:id',
 middlewares.authentication,
 userController.getUsersById);
 
+routes.delete('/me',
+middlewares.authentication,
+userController.deleteUser);
+
 module.exports = routes;
