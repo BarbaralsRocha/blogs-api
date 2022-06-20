@@ -17,4 +17,9 @@ routes.get('/:id',
 middlewares.authentication,
 postController.getPostById);
 
+routes.put('/:id',
+middlewares.authentication,
+middlewares.putPostValidation,
+postController.updatePost);
+
 module.exports = routes;
