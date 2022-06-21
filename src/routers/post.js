@@ -9,6 +9,10 @@ middlewares.authentication,
 middlewares.postValidation,
 postController.newPost);
 
+routes.get('/search',
+middlewares.authentication,
+postController.searchPost);
+
 routes.get('/',
 middlewares.authentication,
 postController.getPosts);
