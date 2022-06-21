@@ -69,6 +69,10 @@ const deletePost = async (postId, userId) => {
 
 const searchPost = async (q) => {
     const { rows } = await BlogPost.findAndCountAll({
+        include: [
+            { model: User, as: 'user', attributes: { exclude: ['password'] } },
+            { model: Category, as: 'categories', through: { attributes: [] } },
+        ],
         where: {
             [Op.or]: [
                 { title: { [Op.like]: `${q}%` } }, 
@@ -76,12 +80,8 @@ const searchPost = async (q) => {
             ],
         },
       });
-     if (!q || q === '') {
-        return getPosts();
-    }
-    if (!rows) {
-        return [];
-    }
+    if (!q || q === '') return getPosts();
+    if (!rows) return [];
     return rows;
 };
 module.exports = {
